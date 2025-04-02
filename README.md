@@ -1,5 +1,6 @@
 # Linux下视频时长计算器
 计算某文件夹下视频总计时长
+
 依赖：`ffmpeg` `find`
 # 使用前
 Step 1: 下载脚本
@@ -45,6 +46,7 @@ chmod +x calculate_video_duration.sh
 
 # calculate_video_duration_linux
 Calculate the total video duration of a folder under Linux
+
 deployment：`ffmpeg` `find`
 # Preparation before use
 Step 1: Download the script
