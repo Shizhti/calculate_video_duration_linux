@@ -45,7 +45,7 @@ chmod +x calculate_video_duration.sh
 
 # calculate_video_duration_linux
 Calculate the total video duration of a folder under Linux
-deployment：`ffmpeg`
+deployment：`ffmpeg` `find`
 # Preparation before use
 Step 1: Download the script
 
