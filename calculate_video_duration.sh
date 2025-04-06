@@ -3,6 +3,7 @@
 recursive=0
 include_hidden=0
 folder_paths=()
+use_pwd=0
 
 # 解析命令行参数
 while [[ $# -gt 0 ]]; do
@@ -15,12 +16,17 @@ while [[ $# -gt 0 ]]; do
             include_hidden=1
             shift
             ;;
+        -p|--pwd)
+            use_pwd=1
+            shift
+            ;;
         -h|--help)
             echo "用法: $0 [选项] [文件夹路径...]"
             echo "计算指定文件夹中视频文件的总时长。"
             echo "选项:"
             echo "  -r        递归处理子目录中的视频文件"
             echo "  -a        包含隐藏文件和文件夹中的视频"
+            echo "  -p, --pwd 计算当前目录下的视频时长"
             echo "  -h, --help 显示本帮助信息"
             echo "如果没有提供文件夹路径，程序会提示输入。"
             exit 0
@@ -32,8 +38,13 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# 若未提供路径，提示用户输入
-if [ ${#folder_paths[@]} -eq 0 ]; then
+# 如果使用了-p/--pwd参数，设置当前目录为路径
+if [ $use_pwd -eq 1 ]; then
+    folder_paths=("$(pwd)")
+fi
+
+# 若未提供路径且未使用-p参数，提示用户输入
+if [ ${#folder_paths[@]} -eq 0 ] && [ $use_pwd -eq 0 ]; then
     read -p "请输入要计算视频时长的文件夹路径（多个路径用空格分隔）: " -a folder_paths
 fi
 
