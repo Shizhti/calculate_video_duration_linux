@@ -23,6 +23,7 @@ chmod +x calculate_video_duration.sh
 选项:
   -r        递归处理子目录中的视频文件
   -a        包含隐藏文件和文件夹中的视频
+  -p, --pwd 计算当前目录下的视频时长
   -h, --help 显示本帮助信息
 如果没有提供文件夹路径，程序会提示输入。
 ```
@@ -69,6 +70,7 @@ Calculate the total duration of video files in the specified folder.
 Options:
 -r        Recursively process video files in subdirectories
 -a        Include videos in hidden files and folders
+-p, --pwd Calculate the video duration in the current directory
 -h, --help Display this help information
 If no folder path is provided, the program will prompt for input.
 ```
