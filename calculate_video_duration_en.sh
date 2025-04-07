@@ -21,14 +21,14 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
         -h|--help)
-            echo "用法: $0 [选项] [文件夹路径...]"
-            echo "计算指定文件夹中视频文件的总时长。"
-            echo "选项:"
-            echo "  -r        递归处理子目录中的视频文件"
-            echo "  -a        包含隐藏文件和文件夹中的视频"
-            echo "  -p, --pwd 计算当前目录下的视频时长"
-            echo "  -h, --help 显示本帮助信息"
-            echo "如果没有提供文件夹路径，程序会提示输入。"
+            echo "Usage: $0 [options] [folder paths...]"
+            echo "Calculate total duration of video files in specified folders."
+            echo "Options:"
+            echo "  -r        Process subdirectories recursively"
+            echo "  -a        Include hidden files and folders"
+            echo "  -p, --pwd Calculate duration in current directory"
+            echo "  -h, --help Show this help message"
+            echo "If no folder paths are provided, the script will prompt for input."
             exit 0
             ;;
         *)
@@ -45,7 +45,7 @@ fi
 
 # 若未提供路径且未使用-p参数，提示用户输入
 if [ ${#folder_paths[@]} -eq 0 ] && [ $use_pwd -eq 0 ]; then
-    read -p "请输入要计算视频时长的文件夹路径（多个路径用空格分隔）: " -a folder_paths
+    read -p "Enter folder path(s) to calculate video duration (separate with spaces): " -a folder_paths
 fi
 
 total_duration=0  # 总时长（秒）
@@ -53,7 +53,7 @@ total_duration=0  # 总时长（秒）
 # 遍历每个文件夹
 for folder_path in "${folder_paths[@]}"; do
     if [ ! -d "$folder_path" ]; then
-        echo "错误: 文件夹 '$folder_path' 不存在!"
+        echo "Error: Folder '$folder_path' does not exist!"
         continue
     fi
 
@@ -84,17 +84,14 @@ for folder_path in "${folder_paths[@]}"; do
     done
 done
 
-# 转换为小时和分钟（修复计算问题）
+# 转换为小时和分钟（修复负数分钟问题）
 total_hours=$(echo "$total_duration / 3600" | bc | cut -d. -f1)
 remaining_seconds=$(echo "$total_duration - ($total_hours * 3600)" | bc)
-total_minutes=$(echo "($remaining_seconds + 30) / 60" | bc)  # 加30实现四舍五入
+total_minutes=$(echo "($remaining_seconds + 0.5) / 60" | bc)  # 加0.5实现四舍五入
 
-# 确保分钟数在合理范围内
+# 确保分钟数不会为负数
 if [ "$total_minutes" -lt 0 ]; then
-    total_minutes=0
-elif [ "$total_minutes" -ge 60 ]; then
-    total_hours=$((total_hours + 1))
     total_minutes=0
 fi
 
-echo "所有视频总时长为: ${total_hours}小时 ${total_minutes}分钟"
+echo "Total duration of all videos: $total_hours hours $total_minutes minutes"
