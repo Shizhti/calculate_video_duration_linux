@@ -54,41 +54,41 @@ Step 1: Download the script
 
 Step 2: Give execution permissions
 ```bash
-chmod +x calculate_video_duration.sh
+chmod +x calculate_video_duration_en.sh
 ```
 # How to use
 
 ## Use directly
 ```bash
-./calculate_video_duration.sh
+./calculate_video_duration_en.sh
 ```
 
 ```bash
-./calculate_video_duration.sh -h
-Usage: /home/xxx/calculate_video_duration.sh [options] [folder path...]
-Calculate the total duration of video files in the specified folder.
+./calculate_video_duration_en.sh -h
+Usage: /home/xxx/Fastapps/calculate_video_duration_en.sh [options] [folder paths...]
+Calculate total duration of video files in specified folders.
 Options:
--r        Recursively process video files in subdirectories
--a        Include videos in hidden files and folders
--p, --pwd Calculate the video duration in the current directory
--h, --help Display this help information
-If no folder path is provided, the program will prompt for input.
+  -r        Process subdirectories recursively
+  -a        Include hidden files and folders
+  -p, --pwd Calculate duration in current directory
+  -h, --help Show this help message
+If no folder paths are provided, the script will prompt for input.
 ```
 
 ```bash
-./calculate_video_duration.sh
-请输入要计算视频时长的文件夹路径（多个路径用空格分隔）: /home/xxx/Downloads/xxx
-所有文件夹的总时长为: 5 小时 22 分钟
+./calculate_video_duration_en.sh
+Enter folder path(s) to calculate video duration (separate with spaces):  /home/xxx/Downloads/xxx
+Total duration of all videos: 6 hours 36 minutes
 
 ./calculate_video_duration.sh
-请输入要计算视频时长的文件夹路径（多个路径用空格分隔）: /home/xxx/Downloads/aaa /home/xxx/Downloads/bbb
-所有文件夹的总时长为: 7 小时 37 分钟
+Enter folder path(s) to calculate video duration (separate with spaces):/home/xxx/Downloads/aaa /home/xxx/Downloads/bbb
+Total duration of all videos: 7 hours 37 minutes
 ```
 ## Follow the folder path
 
 ```bash
 ./calculate_video_duration.sh /home/xxx/Downloads/aaa /home/xxx/Downloads/bbb /home/xxx/Downloads/ccc
-所有文件夹的总时长为: 11 小时 58 分钟
+Total duration of all videos: 11 hours 58 minutes
 ```
 
 
