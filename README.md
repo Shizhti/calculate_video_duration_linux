@@ -87,7 +87,7 @@ Total duration of all videos: 7 hours 37 minutes
 ## Follow the folder path
 
 ```bash
-./calculate_video_duration.sh /home/xxx/Downloads/aaa /home/xxx/Downloads/bbb /home/xxx/Downloads/ccc
+./calculate_video_duration_en.sh /home/xxx/Downloads/aaa /home/xxx/Downloads/bbb /home/xxx/Downloads/ccc
 Total duration of all videos: 11 hours 58 minutes
 ```
 
